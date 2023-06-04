@@ -133,7 +133,13 @@ class OrderRemembered(Order):
         that haven't yet been played"""
 
         def get_index(iter):
-            return playlist.get_path(iter).get_indices()[0]
+            path = playlist.get_path(iter)
+            if path is not None:
+                indices = path.get_indices()
+                if indices:
+                    return indices[0]
+            return None
+
 
         played = set(map(get_index, self._played))
         print_d("Played %d of %d song(s)" % (len(self._played), len(playlist)))
