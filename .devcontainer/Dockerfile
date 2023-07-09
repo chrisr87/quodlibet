@@ -25,7 +25,22 @@ RUN DEBIAN_FRONTEND=noninteractive \
         libffi-dev \
         liblzma-dev \
         libcairo2-dev \
-        libgirepository1.0-dev
+        libgirepository1.0-dev \
+        libsndfile1-dev \
+        alsa-base \
+        alsa-utils \
+        python3-gi \
+        libgdk-pixbuf2.0-dev \
+        libgtk-3-dev \
+        libsoup2.4-dev \
+        python3-feedparser \
+        ibgstreamer1.0-dev \
+        libgstreamer-plugins-base1.0-dev \
+        dbus-x11 \
+        gstreamer1.0-plugins-base \
+        gstreamer1.0-plugins-good \
+        gstreamer1.0-plugins-bad \
+        gstreamer1.0-plugins-ugly
         
 # Python and poetry installation
 USER $USER
@@ -44,4 +59,5 @@ RUN echo "done 0" \
     && pyenv global ${PYTHON_VERSION} \
     && echo "done 3" \
     && curl -sSL https://install.python-poetry.org | python3 - \
-    && poetry config virtualenvs.in-project true
+    && poetry config virtualenvs.in-project true \
+    && pip install PyGObject feedparser mutagen
